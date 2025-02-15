@@ -22,7 +22,7 @@ const Page = async () => {
   }
 
   return (
-    <div className="h-[82vh]">
+    <div>
       {blogs?.length > 0 ? (
         <>
           <div className="container">

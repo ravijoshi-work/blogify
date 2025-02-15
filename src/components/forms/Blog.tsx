@@ -298,7 +298,7 @@ const BlogForm = ({ data }: PropsType) => {
       {success && <div className="text-green-700">{success}</div>}
 
       <button type="submit" className="btn">
-        {isLoading ? "Loading..." : "Edit"}
+        {isLoading ? "Saving..." : data ? "Edit" : "Add"}
       </button>
     </form>
   );
