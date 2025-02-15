@@ -56,29 +56,25 @@ const SignupForm = () => {
       return;
     }
 
-    try {
-      setIsLoading(true);
+    setIsLoading(true);
 
-      const newUser = {
-        name,
-        email,
-        password,
-      };
-      const response = await createUser(newUser);
+    const newUser = {
+      name,
+      email,
+      password,
+    };
+    const response = await createUser(newUser);
 
-      if (response.status) {
-        setSuccess("Registration Successful");
-        setTimeout(() => {
-          router.push("/login", { scroll: false });
-        }, 1000);
-      } else {
-        setError(response.error || "An error occurred while registering.");
-      }
-    } catch (error) {
-      setError("An unexpected error occurred. Please try again.");
+    if (response.status) {
+      setSuccess("Registration Successful");
+      setTimeout(() => {
+        router.push("/login", { scroll: false });
+      }, 1000);
+      setIsLoading(false);
+    } else {
+      setError(response.error || "An error occurred while registering.");
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   return (
