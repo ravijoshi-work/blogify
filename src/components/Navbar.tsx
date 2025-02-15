@@ -38,6 +38,7 @@ const Navbar = () => {
   const onLogoutClick = () => {
     signOut();
     handleHideDropdown();
+    router.push("/blog");
   };
 
   return (
