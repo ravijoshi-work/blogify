@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Input from "../ui/Input";
+import { createUser } from "@/actions/user";
 
 const initialState = {
   name: "",
@@ -63,28 +64,17 @@ const SignupForm = () => {
         email,
         password,
       };
+      const response = await createUser(newUser);
 
-      const response = await fetch("http://localhost:3000/api/signup", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(newUser),
-      });
-
-      const data = await response.json();
-
-      if (response.status === 201) {
+      if (response.status) {
         setSuccess("Registration Successful");
         setTimeout(() => {
           router.push("/login", { scroll: false });
         }, 1000);
       } else {
-        // Handle specific error messages
-        setError(data.message || "An error occurred while registering.");
+        setError(response.error || "An error occurred while registering.");
       }
     } catch (error) {
-      console.log(error);
       setError("An unexpected error occurred. Please try again.");
     }
 
