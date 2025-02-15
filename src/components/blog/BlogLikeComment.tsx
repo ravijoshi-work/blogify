@@ -32,7 +32,8 @@ const BlogLikeComment = ({ userId }: PropsType) => {
 
     const response = await likeUnlikeBlog(blogDetails?._id);
 
-    if (response.status) {
+
+    if (response?.status) {
       toast.success(response?.message || "Successful");
       updateBlog({ likes: (response?.data as IGetBlog)?.likes });
     } else {

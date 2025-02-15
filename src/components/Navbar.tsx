@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import avatar from "@/public/img/user.png";
@@ -14,9 +14,10 @@ const Navbar = () => {
   const [userData, setUserData] = useState<IGetUser | undefined>();
   const [showDropdown, setShowDropdown] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter();
 
   async function fetchUser() {
-    const response = await getUserById(session?.user?._id??'');
+    const response = await getUserById(session?.user?._id ?? "");
     if (response && response.status) {
       setUserData(response.data as IGetUser);
     }
@@ -79,7 +80,6 @@ const Navbar = () => {
                   onClick={handleShowDropdown}
                   src={userData?.avatar?.url ? userData?.avatar?.url : avatar}
                   alt="avatar"
-                  placeholder="blur"
                   width={0}
                   priority
                   height={0}

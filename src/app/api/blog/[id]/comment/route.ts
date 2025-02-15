@@ -5,12 +5,15 @@ import { NextRequest, NextResponse } from "next/server";
 import Blog from "@/models/Blog";
 import User from "@/models/User";
 import errorHandler from "@/utils/error-handler";
+import { authMiddleware } from "@/middleware/auth";
 
 export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   await connect();
+  authMiddleware(req);
+
   const { id } = params;
 
   try {

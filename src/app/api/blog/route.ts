@@ -4,9 +4,11 @@ import { connect } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import Blog from "@/models/Blog";
 import errorHandler from "@/utils/error-handler";
+import { authMiddleware } from "@/middleware/auth";
 
 export async function POST(req: NextRequest) {
   await connect();
+  authMiddleware(req);
 
   try {
     const body = await req.json();

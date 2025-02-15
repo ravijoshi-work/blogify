@@ -4,6 +4,7 @@ import { connect } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import Blog from "@/models/Blog";
 import errorHandler from "@/utils/error-handler";
+import { authMiddleware } from "@/middleware/auth";
 
 export async function PUT(
   req: NextRequest,
@@ -14,6 +15,7 @@ export async function PUT(
   }
 ) {
   await connect();
+  authMiddleware(req);
 
   const { id } = params;
 

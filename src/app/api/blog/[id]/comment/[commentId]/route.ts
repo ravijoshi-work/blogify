@@ -5,6 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Blog from "@/models/Blog";
 import { IComment } from "@/types/blog";
 import errorHandler from "@/utils/error-handler";
+import { authMiddleware } from "@/middleware/auth";
 
 export async function DELETE(
   req: NextRequest,
@@ -15,6 +16,7 @@ export async function DELETE(
   }
 ) {
   await connect();
+  authMiddleware(req);
 
   const { id, commentId } = params;
 

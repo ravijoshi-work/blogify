@@ -15,7 +15,10 @@ const errorHandler = (error: unknown) => {
     "code" in error &&
     (error as { code: number }).code === 11000
   ) {
-    const field = Object.keys((error as unknown as { keyPattern: Record<string, unknown> }).keyPattern || {})[0];
+    const field = Object.keys(
+      (error as unknown as { keyPattern: Record<string, unknown> })
+        .keyPattern || {}
+    )[0];
     // Handle duplicate key error
     let message = "Duplicate key error";
     switch (field) {
@@ -36,6 +39,11 @@ const errorHandler = (error: unknown) => {
   } else if (error instanceof mongoose.Error.CastError) {
     NextResponse.json(
       { status: false, error: "Invalid ObjectId" },
+      { status: 400 }
+    );
+  } else if (error instanceof TypeError) {
+    return NextResponse.json(
+      { status: false, error: error.message, data: null },
       { status: 400 }
     );
   }

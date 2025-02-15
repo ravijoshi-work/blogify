@@ -14,7 +14,7 @@ const page = async ({ params }: { params: { id: string } }) => {
   const session = await getServerAuthSession();
 
   return (
-    <div>
+    <div className="h-[82vh]">
       <UserProvider initialUser={response?.data as IGetUser}>
         <ModalProvider>
           <ProfileDetails currentUserId={session?.user?._id ?? ""} />

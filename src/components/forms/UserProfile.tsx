@@ -11,9 +11,8 @@ import { IGetUser } from "@/types/user";
 
 const UserProfileForm = () => {
   const { user: profile, setUser } = useUser();
-
-  const CLOUD_NAME = "";
-  const UPLOAD_PRESET = "";
+  const CLOUD_NAME = "dq3sduyht";
+  const UPLOAD_PRESET = "nextjs_blog_images";
   const [profileToEdit, setProfileToEdit] = useState<IGetUser>(profile);
   const [avatarToEdit, setAvatarToEdit] = useState<Blob | File | null>(null);
   const { closeModal } = useModal();

@@ -26,9 +26,6 @@ export async function createBlogComment(blogId: string, payload: unknown) {
   return await callApiPost(`/blog/${blogId}/comment`, payload);
 }
 
-export async function updateBlogComment(payload: unknown) {
-  return await callApiPost(`/blog`, payload);
-}
 
 export async function deleteBlogComment(blogId: string, commentId: string) {
   return await callApiDelete(`/blog/${blogId}/comment/${commentId}`);

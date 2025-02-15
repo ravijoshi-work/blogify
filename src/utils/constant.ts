@@ -1,11 +1,6 @@
-export const clientPublicRoutes = [
-  "/",
-  "/login",
-  "/signup",
-  "/blog",
-  "/blog/*",
-];
-
 export const apiPrefix = "/api";
 
-export const apiPublicRoutes = ["/api/user", "/api/blog*", "/blog/*"];
+export const SiteSettings = {
+  github: "https://github.com/ravijoshi-work",
+  linkedin: "https://www.linkedin.com/in/ravi-kumar-joshi-511a2b227",
+};

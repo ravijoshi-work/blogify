@@ -4,12 +4,14 @@ import { connect } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import Blog from "@/models/Blog";
 import errorHandler from "@/utils/error-handler";
+import { authMiddleware } from "@/middleware/auth";
 
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   await connect();
+  authMiddleware(req);
 
   const { id } = params;
 
@@ -17,6 +19,13 @@ export async function PUT(
     const tokenUser = req["user"];
     const body = await req.json();
     const blog = await Blog.findById(id).populate("authorId");
+
+    if (!blog) {
+      return NextResponse.json(
+        { error: "Blog not found.", status: false },
+        { status: 404 }
+      );
+    }
 
     if (blog?.authorId?._id.toString() !== tokenUser._id.toString()) {
       return NextResponse.json(
@@ -84,6 +93,7 @@ export async function DELETE(
   }
 ) {
   await connect();
+  authMiddleware(req);
 
   const { id } = params;
   try {

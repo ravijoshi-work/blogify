@@ -12,8 +12,10 @@ export default function Home() {
         </h1>
 
         <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry&apos;s standard dummy text.
+          Discover the fascinating world of avian wonders. From the majestic
+          Bald Eagle to the elusive Kakapo, explore the diverse species that
+          grace our planet. Join us in our mission to protect and preserve these
+          incredible creatures for future generations.
         </p>
       </div>
 
